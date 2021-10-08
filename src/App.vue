@@ -1,17 +1,37 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <img alt="Vue logo" src="./assets/logo.png" />
+  <h1>Hello world from {{ name }}</h1>
+  <!--  <img v-bind:src="img" v-bind:alt="`alt is:${alt}`" />-->
+  <img :src="img" :alt="`alt is:${alt}`" />
+  <!--  <button v-on:click="changeName">change name</button>-->
+  <button @click="changeName($event, 213)">change name</button>
+  <!--  <Button :text="`my awesome button`" :onClick="changeName" />-->
+  <Button :text="`my awesome button`" @button-click="changeName" />
+  <!--  <button @click="name = Math.floor(Math.random() * 1000)">change name</button>-->
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Button from "./components/Button";
 
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
+  name: "App",
+  components: { Button },
+  data() {
+    return {
+      name: "Ivan",
+      img: "http://www.mandysam.com/img/random.jpg",
+      alt: "simpson"
+    };
+  },
+
+  methods: {
+    changeName(arg, event) {
+      // console.log(this);
+      console.log(arg, event);
+      this.name = Math.floor(Math.random() * 1000);
+    }
   }
-}
+};
 </script>
 
 <style>
